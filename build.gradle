@@ -1,13 +1,18 @@
 plugins {
     id 'java'
+    id 'checkstyle'
+    id 'pmd'
+    id 'com.diffplug.spotless' version '6.25.0'
 }
 
-group 'woowacourse-projects'
-version '1.0-SNAPSHOT'
+group = 'woowacourse-projects'
+version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    maven { url 'https://jitpack.io' }
+    maven {
+        url = uri('https://jitpack.io')
+    }
 }
 
 dependencies {
@@ -22,4 +27,38 @@ java {
 
 test {
     useJUnitPlatform()
+}
+
+spotless {
+    java {
+        target 'src/**/*.java'
+
+        // AOSP 스타일은 들여쓰기 4칸을 사용한다.
+        googleJavaFormat('1.19.2').aosp()
+
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}
+
+checkstyle {
+    toolVersion = '10.12.7'
+    configFile = file('config/checkstyle/checkstyle.xml')
+    maxWarnings = 0
+    ignoreFailures = false
+}
+
+pmd {
+    toolVersion = '7.0.0'
+    consoleOutput = true
+    ignoreFailures = false
+
+    // PMD 기본 규칙 대신 직접 선택한 규칙만 적용한다.
+    ruleSets = []
+    ruleSetFiles = files('config/pmd/ruleset.xml')
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('spotlessCheck')
 }
