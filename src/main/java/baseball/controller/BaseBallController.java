@@ -27,10 +27,10 @@ public class BaseBallController {
 
         List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
 
-        String result = evaluate(computer, player);
+        GameResult gameResult = evaluate(computer, player);
     }
 
-    private String evaluate(List<Integer> computer, List<Integer> player) {
+    private GameResult evaluate(List<Integer> computer, List<Integer> player) {
         int strike = 0;
         int ball = 0;
 
@@ -44,11 +44,9 @@ public class BaseBallController {
             }
         }
 
-        if (strike == 0 && ball == 0) {
-            return "낫싱";
-        }
+        GameResult gameResult = GameResult.create(strike, ball);
 
-        return ball + "볼 " + strike + "스트라이크";
+        return gameResult;
     }
 
     private List<Integer> convertPlayerNumbersToIntegers(String playerNumbers) {
