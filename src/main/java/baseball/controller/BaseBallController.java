@@ -19,21 +19,30 @@ public class BaseBallController {
 
         view.startGame();
 
-        List<Integer> computer = new ArrayList<>();
-        generatedRandomNumbers(computer);
-
         while (true) {
-            view.readPlayerNumbers();
-            String playerNumbers = Console.readLine();
+            List<Integer> computer = new ArrayList<>();
+            generatedRandomNumbers(computer);
 
-            List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
-            GameResult gameResult = evaluate(computer, player);
+            while (true) {
+                view.readPlayerNumbers();
+                String playerNumbers = Console.readLine();
 
-            String resultMessage = parseResultMessage(gameResult.strike(),gameResult.ball());
-            view.printResultMessage(resultMessage);
+                List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
+                GameResult gameResult = evaluate(computer, player);
 
-            if (gameResult.strike() == 3) {
-                view.printSuccessMessage();
+                String resultMessage = parseResultMessage(gameResult.strike(),gameResult.ball());
+                view.printResultMessage(resultMessage);
+
+                if (gameResult.strike() == 3) {
+                  break;
+                }
+            }
+            view.printSuccessMessage();
+            view.askRestartGame();
+
+            int restartChoice = Integer.parseInt(Console.readLine());
+
+            if (restartChoice == 2) {
                 return;
             }
         }
