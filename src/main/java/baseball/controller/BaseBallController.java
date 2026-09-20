@@ -28,6 +28,20 @@ public class BaseBallController {
         List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
 
         GameResult gameResult = evaluate(computer, player);
+
+        String resultMessage = parseResultMessage(gameResult.strike(),gameResult.ball());
+        view.printResultMessage(resultMessage);
+    }
+
+    private String parseResultMessage(int strike, int ball) {
+        if (strike == 0 && ball == 0) {
+            return "낫싱";
+        } else if (strike == 0) {
+            return ball + "볼";
+        } else if (ball == 0) {
+            return strike + "스트라이크";
+        }
+        return ball + "볼 " + strike + "스트라이크";
     }
 
     private GameResult evaluate(List<Integer> computer, List<Integer> player) {

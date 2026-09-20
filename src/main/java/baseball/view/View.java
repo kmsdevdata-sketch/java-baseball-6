@@ -9,4 +9,8 @@ public class View {
     public void readPlayerNumbers() {
         System.out.println("숫자를 입력해주세요 : ");
     }
+
+    public void printResultMessage(String resultMessage) {
+        System.out.println(resultMessage);
+    }
 }
