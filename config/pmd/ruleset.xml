@@ -32,7 +32,7 @@
     <!-- ================================================= -->
 
     <rule ref="category/java/errorprone.xml/EmptyCatchBlock"/>
-    <rule ref="category/java/errorprone.xml/EmptyControlStatement"/>
+    <rule ref="category/java/codestyle.xml/EmptyControlStatement"/>
     <rule ref="category/java/errorprone.xml/ReturnFromFinallyBlock"/>
     <rule ref="category/java/errorprone.xml/AssignmentInOperand"/>
     <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals"/>

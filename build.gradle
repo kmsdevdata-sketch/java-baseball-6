@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'checkstyle'
     id 'pmd'
-    id 'com.diffplug.spotless' version '6.25.0'
+    id 'com.diffplug.spotless' version '8.10.2'
 }
 
 group = 'woowacourse-projects'
@@ -17,11 +17,12 @@ repositories {
 
 dependencies {
     implementation 'com.github.woowacourse-projects:mission-utils:1.1.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.8.1'
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
@@ -32,9 +33,10 @@ test {
 spotless {
     java {
         target 'src/**/*.java'
+        targetExclude 'src/test/java/baseball/ApplicationTest.java'
 
         // AOSP 스타일은 들여쓰기 4칸을 사용한다.
-        googleJavaFormat('1.19.2').aosp()
+        googleJavaFormat('1.30.0').aosp()
 
         removeUnusedImports()
         trimTrailingWhitespace()
@@ -43,14 +45,14 @@ spotless {
 }
 
 checkstyle {
-    toolVersion = '10.12.7'
+    toolVersion = '13.9.0'
     configFile = file('config/checkstyle/checkstyle.xml')
     maxWarnings = 0
     ignoreFailures = false
 }
 
 pmd {
-    toolVersion = '7.0.0'
+    toolVersion = '7.24.0'
     consoleOutput = true
     ignoreFailures = false
 
