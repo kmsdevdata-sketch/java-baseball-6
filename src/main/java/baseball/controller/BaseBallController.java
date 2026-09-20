@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.view.View;
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ public class BaseBallController {
         List<Integer> computer = new ArrayList<>();
         generatedRandomNumbers(computer);
 
-
+        view.readPlayerNumbers();
+        String playerNumbers = Console.readLine();
     }
 
     private void generatedRandomNumbers(List<Integer> computer) {
