@@ -26,6 +26,29 @@ public class BaseBallController {
         String playerNumbers = Console.readLine();
 
         List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
+
+        String result = evaluate(computer, player);
+    }
+
+    private String evaluate(List<Integer> computer, List<Integer> player) {
+        int strike = 0;
+        int ball = 0;
+
+        for (int i = 0; i < computer.size(); i++) {
+            int playerNumber = player.get(i);
+
+            if (computer.get(i) == playerNumber) {
+                strike++;
+            } else if (computer.contains(playerNumber)) {
+                ball++;
+            }
+        }
+
+        if (strike == 0 && ball == 0) {
+            return "낫싱";
+        }
+
+        return ball + "볼 " + strike + "스트라이크";
     }
 
     private List<Integer> convertPlayerNumbersToIntegers(String playerNumbers) {
