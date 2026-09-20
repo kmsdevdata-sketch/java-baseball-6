@@ -22,15 +22,21 @@ public class BaseBallController {
         List<Integer> computer = new ArrayList<>();
         generatedRandomNumbers(computer);
 
-        view.readPlayerNumbers();
-        String playerNumbers = Console.readLine();
+        while (true) {
+            view.readPlayerNumbers();
+            String playerNumbers = Console.readLine();
 
-        List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
+            List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
+            GameResult gameResult = evaluate(computer, player);
 
-        GameResult gameResult = evaluate(computer, player);
+            String resultMessage = parseResultMessage(gameResult.strike(),gameResult.ball());
+            view.printResultMessage(resultMessage);
 
-        String resultMessage = parseResultMessage(gameResult.strike(),gameResult.ball());
-        view.printResultMessage(resultMessage);
+            if (gameResult.strike() == 3) {
+                view.printSuccessMessage();
+                return;
+            }
+        }
     }
 
     private String parseResultMessage(int strike, int ball) {

@@ -13,4 +13,8 @@ public class View {
     public void printResultMessage(String resultMessage) {
         System.out.println(resultMessage);
     }
+
+    public void printSuccessMessage() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+    }
 }
