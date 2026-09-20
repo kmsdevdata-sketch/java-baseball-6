@@ -24,6 +24,16 @@ public class BaseBallController {
 
         view.readPlayerNumbers();
         String playerNumbers = Console.readLine();
+
+        List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
+    }
+
+    private List<Integer> convertPlayerNumbersToIntegers(String playerNumbers) {
+        List<Integer> player = new ArrayList<>();
+        for (char number : playerNumbers.toCharArray()) {
+            player.add(number - '0');
+        }
+        return player;
     }
 
     private void generatedRandomNumbers(List<Integer> computer) {
