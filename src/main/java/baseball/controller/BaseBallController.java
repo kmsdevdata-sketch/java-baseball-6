@@ -12,5 +12,6 @@ public class BaseBallController {
 
     public void run() {
 
+        view.startGame();
     }
 }
