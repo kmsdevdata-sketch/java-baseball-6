@@ -1,4 +1,4 @@
-package baseball.controller;
+package baseball.vo;
 
 public record GameResult(int strike, int ball) {
 

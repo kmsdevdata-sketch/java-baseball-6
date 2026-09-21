@@ -2,6 +2,7 @@ package baseball;
 
 import baseball.controller.BaseBallController;
 import baseball.model.Computer;
+import baseball.model.Judge;
 import baseball.view.View;
 
 public class Application {
@@ -9,8 +10,9 @@ public class Application {
 
         View view = new View();
         Computer computer = new Computer();
+        Judge judge = new Judge();
 
-        BaseBallController baseBallController = new BaseBallController(view,computer);
+        BaseBallController baseBallController = new BaseBallController(view,computer,judge);
 
         baseBallController.run();
     }
