@@ -26,8 +26,7 @@ public class BaseBallController {
         view.startGame();
         while (true) {
             while (true) {
-                view.readPlayerNumbers();
-                String playerNumbers = Console.readLine();
+                String playerNumbers = view.readPlayerNumbers();
 
                 List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
 
@@ -41,9 +40,8 @@ public class BaseBallController {
                 }
             }
             view.printSuccessMessage();
-            view.askRestartGame();
 
-            int restartChoice = Integer.parseInt(Console.readLine());
+            int restartChoice = Integer.parseInt(view.askRestartGame());
 
             if (restartChoice == 2) {
                 return;
