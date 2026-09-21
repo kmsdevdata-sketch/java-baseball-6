@@ -21,7 +21,7 @@ public class Validator {
 
     private static void validateNumberRange(String playerNumbers) {
         for (String number : playerNumbers.split("")) {
-            if (number.matches("[1-9]+")) {
+            if (!number.matches("[1-9]+")) {
                 throw new IllegalArgumentException("입력값은 1~9 사이의 값이여야 합니다.");
             }
         }

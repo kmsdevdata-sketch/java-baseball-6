@@ -39,6 +39,7 @@ public class BaseBallController {
             String resultMessage = judge.parseResultMessage(gameResult.strike(),gameResult.ball());
 
             view.printResultMessage(resultMessage);
+            view.printSuccessMessage();
 
             if (gameResult.strike() == 3) {
                 return;
