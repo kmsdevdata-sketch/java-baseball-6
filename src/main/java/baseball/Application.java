@@ -14,6 +14,6 @@ public class Application {
 
         BaseBallController baseBallController = new BaseBallController(view,computer,judge);
 
-        baseBallController.run();
+        baseBallController.startGame();
     }
 }

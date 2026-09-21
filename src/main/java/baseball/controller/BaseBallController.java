@@ -4,7 +4,6 @@ import baseball.model.Computer;
 import baseball.model.Judge;
 import baseball.view.View;
 import baseball.vo.GameResult;
-import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,33 +20,36 @@ public class BaseBallController {
         this.judge = judge;
     }
 
-    public void run() {
-
+    public void startGame() {
         view.startGame();
+        do {
+            gameProcess();
+        } while (wantsToPlayAgain());
+    }
+
+    private void gameProcess() {
         while (true) {
-            while (true) {
-                String playerNumbers = view.readPlayerNumbers();
+            String playerNumbers = view.readPlayerNumbers();
 
-                List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
+            List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
 
-                GameResult gameResult = judge.evaluate(computer.getRandomNumbers(), player);
-                String resultMessage = judge.parseResultMessage(gameResult.strike(),gameResult.ball());
+            GameResult gameResult = judge.evaluate(computer.getRandomNumbers(), player);
+            String resultMessage = judge.parseResultMessage(gameResult.strike(),gameResult.ball());
 
-                view.printResultMessage(resultMessage);
+            view.printResultMessage(resultMessage);
 
-                if (gameResult.strike() == 3) {
-                  break;
-                }
-            }
-            view.printSuccessMessage();
-
-            int restartChoice = Integer.parseInt(view.askRestartGame());
-
-            if (restartChoice == 2) {
+            if (gameResult.strike() == 3) {
                 return;
             }
+        }
+    }
+
+    private boolean wantsToPlayAgain() {
+        int restartChoice = Integer.parseInt(view.askRestartGame());
+        if (restartChoice == 1) {
             computer.shuffle();
         }
+        return restartChoice == 1;
     }
 
     private List<Integer> convertPlayerNumbersToIntegers(String playerNumbers) {
