@@ -2,6 +2,7 @@ package baseball.controller;
 
 import baseball.model.Computer;
 import baseball.model.Judge;
+import baseball.validator.Validator;
 import baseball.view.View;
 import baseball.vo.GameResult;
 
@@ -30,6 +31,7 @@ public class BaseBallController {
     private void gameProcess() {
         while (true) {
             String playerNumbers = view.readPlayerNumbers();
+            Validator.validatePlayerNumbers(playerNumbers);
 
             List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
 
@@ -46,6 +48,7 @@ public class BaseBallController {
 
     private boolean wantsToPlayAgain() {
         int restartChoice = Integer.parseInt(view.askRestartGame());
+        Validator.validateRestartNumber(restartChoice);
         if (restartChoice == 1) {
             computer.shuffle();
         }
