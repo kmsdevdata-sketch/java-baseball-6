@@ -1,5 +1,6 @@
 package baseball.model;
 
+import baseball.vo.RandomNumbers;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 
 public class Computer {
 
-    private List<Integer> randomNumbers = new ArrayList<>();
+    private RandomNumbers randomNumbers;
 
     public void generateRandomNumbers(){
 
@@ -20,10 +21,10 @@ public class Computer {
             }
         }
 
-        this.randomNumbers = randomNumbers;
+        this.randomNumbers = RandomNumbers.create(randomNumbers);
     }
 
-    public List<Integer> getRandomNumbers() {
+    public RandomNumbers getRandomNumbers() {
         return randomNumbers;
     }
 }

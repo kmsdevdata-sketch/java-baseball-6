@@ -2,12 +2,10 @@ package baseball.controller;
 
 import baseball.model.Computer;
 import baseball.model.Judge;
+import baseball.model.Player;
 import baseball.validator.Validator;
 import baseball.view.View;
 import baseball.vo.GameResult;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BaseBallController {
 
@@ -29,12 +27,9 @@ public class BaseBallController {
 
     private void gameProcess() {
         while (true) {
-            String playerNumbers = View.readPlayerNumbers();
-            Validator.validatePlayerNumbers(playerNumbers);
+            Player player = Player.create(View.readPlayerNumbers());
 
-            List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
-
-            GameResult gameResult = judge.evaluate(computer.getRandomNumbers(), player);
+            GameResult gameResult = judge.evaluate(computer.getRandomNumbers().randomNumbers(), player);
             String resultMessage = judge.parseResultMessage(gameResult.strike(),gameResult.ball());
 
             View.printResultMessage(resultMessage);
@@ -52,12 +47,6 @@ public class BaseBallController {
         return restartChoice == 1;
     }
 
-    private List<Integer> convertPlayerNumbersToIntegers(String playerNumbers) {
-        List<Integer> player = new ArrayList<>();
-        for (char number : playerNumbers.toCharArray()) {
-            player.add(number - '0');
-        }
-        return player;
-    }
+
 
 }
