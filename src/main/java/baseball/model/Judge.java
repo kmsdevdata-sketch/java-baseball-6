@@ -6,16 +6,19 @@ import java.util.List;
 
 public class Judge {
 
-    public GameResult judge(List<Integer> computer, List<Integer> player) {
+    public GameResult judge(Computer computer, Player player) {
+        List<Integer> computerRandomNumbers = computer.getRandomNumbers();
+        List<Integer> playerRandomNumbers = player.getRandomNumbers();
+
         int strike = 0;
         int ball = 0;
 
-        for (int i = 0; i < computer.size(); i++) {
-            int playerNumber = player.get(i);
+        for (int i = 0; i < computerRandomNumbers.size(); i++) {
+            int playerNumber = playerRandomNumbers.get(i);
 
-            if (computer.get(i) == playerNumber) {
+            if (computerRandomNumbers.get(i) == playerNumber) {
                 strike++;
-            } else if (computer.contains(playerNumber)) {
+            } else if (computerRandomNumbers.contains(playerNumber)) {
                 ball++;
             }
         }

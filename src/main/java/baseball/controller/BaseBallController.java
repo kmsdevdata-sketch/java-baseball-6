@@ -32,7 +32,7 @@ public class BaseBallController {
 
             Player player = Player.create(View.readPlayerNumbers());
 
-            GameResult gameResult = judge.judge(computer.getRandomNumbers(), player.getRandomNumbers());
+            GameResult gameResult = judge.judge(computer, player);
 
             View.printResultMessage(gameResult.resultMessage());
 
