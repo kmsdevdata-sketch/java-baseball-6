@@ -27,4 +27,8 @@ public class Player {
         }
         return player;
     }
+
+    public List<Integer> getRandomNumbers() {
+        return randomNumbers.randomNumbers();
+    }
 }

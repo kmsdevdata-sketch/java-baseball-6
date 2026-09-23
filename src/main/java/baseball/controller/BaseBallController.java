@@ -27,14 +27,14 @@ public class BaseBallController {
 
     private void gameProcess() {
         while (true) {
+
             Player player = Player.create(View.readPlayerNumbers());
 
-            GameResult gameResult = judge.evaluate(computer.getRandomNumbers().randomNumbers(), player);
-            String resultMessage = judge.parseResultMessage(gameResult.strike(),gameResult.ball());
+            GameResult gameResult = judge.judge(computer.getRandomNumbers(), player.getRandomNumbers());
 
-            View.printResultMessage(resultMessage);
+            View.printResultMessage(gameResult.resultMessage());
 
-            if (gameResult.strike() == 3) {
+            if (judge.isOut(gameResult)) {
                 View.printSuccessMessage();
                 return;
             }

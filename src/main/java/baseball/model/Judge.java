@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Judge {
 
-    public GameResult evaluate(List<Integer> computer, List<Integer> player) {
+    public GameResult judge(List<Integer> computer, List<Integer> player) {
         int strike = 0;
         int ball = 0;
 
@@ -20,10 +20,14 @@ public class Judge {
             }
         }
 
-        return GameResult.create(strike, ball);
+        return new GameResult(strike, ball, makeCallSign(strike, ball));
     }
 
-    public String parseResultMessage(int strike, int ball) {
+    public boolean isOut(GameResult gameResult) {
+        return gameResult.strike() == 3;
+    }
+
+    private String makeCallSign(int strike, int ball) {
         if (strike == 0 && ball == 0) {
             return "낫싱";
         } else if (strike == 0) {

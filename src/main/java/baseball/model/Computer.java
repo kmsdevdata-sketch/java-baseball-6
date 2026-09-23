@@ -24,7 +24,7 @@ public class Computer {
         this.randomNumbers = RandomNumbers.create(randomNumbers);
     }
 
-    public RandomNumbers getRandomNumbers() {
-        return randomNumbers;
+    public List<Integer> getRandomNumbers() {
+        return randomNumbers.randomNumbers();
     }
 }
