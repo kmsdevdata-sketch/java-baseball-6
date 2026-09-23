@@ -1,10 +1,18 @@
 package baseball.validator;
 
+import java.util.List;
+
 public class Validator {
 
     public static void validatePlayerNumbers(String playerNumbers) {
         validateNumberLength(playerNumbers);
         validateNumberRange(playerNumbers);
+    }
+
+    public static void validateNoDuplicates(List<Integer> randomNumbers) {
+        if (randomNumbers.size() != randomNumbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("숫자는 중복될수 없습니다.");
+        }
     }
 
     public static void validateRestartNumber(String restartChoice) {
@@ -26,4 +34,5 @@ public class Validator {
             }
         }
     }
+
 }
