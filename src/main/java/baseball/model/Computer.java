@@ -9,11 +9,7 @@ public class Computer {
 
     private List<Integer> randomNumbers = new ArrayList<>();
 
-    public Computer() {
-        this.randomNumbers = generate();
-    }
-
-    private List<Integer> generate(){
+    public void generateRandomNumbers(){
 
         List<Integer> randomNumbers = new ArrayList<>();
 
@@ -24,11 +20,7 @@ public class Computer {
             }
         }
 
-        return randomNumbers;
-    }
-
-    public void shuffle() {
-        this.randomNumbers = generate();
+        this.randomNumbers = randomNumbers;
     }
 
     public List<Integer> getRandomNumbers() {

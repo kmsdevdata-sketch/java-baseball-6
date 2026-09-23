@@ -22,6 +22,7 @@ public class BaseBallController {
     public void startGame() {
         View.startGame();
         do {
+            computer.generateRandomNumbers();
             gameProcess();
         } while (wantsToPlayAgain());
     }
@@ -37,9 +38,9 @@ public class BaseBallController {
             String resultMessage = judge.parseResultMessage(gameResult.strike(),gameResult.ball());
 
             View.printResultMessage(resultMessage);
-            View.printSuccessMessage();
 
             if (gameResult.strike() == 3) {
+                View.printSuccessMessage();
                 return;
             }
         }
@@ -48,9 +49,6 @@ public class BaseBallController {
     private boolean wantsToPlayAgain() {
         int restartChoice = Integer.parseInt(View.askRestartGame());
         Validator.validateRestartNumber(restartChoice);
-        if (restartChoice == 1) {
-            computer.shuffle();
-        }
         return restartChoice == 1;
     }
 
