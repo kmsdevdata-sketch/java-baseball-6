@@ -11,18 +11,16 @@ import java.util.List;
 
 public class BaseBallController {
 
-    private final View view;
     private final Computer computer;
     private final Judge judge;
 
-    public BaseBallController(View view, Computer computer, Judge judge) {
-        this.view = view;
+    public BaseBallController(Computer computer, Judge judge) {
         this.computer = computer;
         this.judge = judge;
     }
 
     public void startGame() {
-        view.startGame();
+        View.startGame();
         do {
             gameProcess();
         } while (wantsToPlayAgain());
@@ -30,7 +28,7 @@ public class BaseBallController {
 
     private void gameProcess() {
         while (true) {
-            String playerNumbers = view.readPlayerNumbers();
+            String playerNumbers = View.readPlayerNumbers();
             Validator.validatePlayerNumbers(playerNumbers);
 
             List<Integer> player = convertPlayerNumbersToIntegers(playerNumbers);
@@ -38,8 +36,8 @@ public class BaseBallController {
             GameResult gameResult = judge.evaluate(computer.getRandomNumbers(), player);
             String resultMessage = judge.parseResultMessage(gameResult.strike(),gameResult.ball());
 
-            view.printResultMessage(resultMessage);
-            view.printSuccessMessage();
+            View.printResultMessage(resultMessage);
+            View.printSuccessMessage();
 
             if (gameResult.strike() == 3) {
                 return;
@@ -48,7 +46,7 @@ public class BaseBallController {
     }
 
     private boolean wantsToPlayAgain() {
-        int restartChoice = Integer.parseInt(view.askRestartGame());
+        int restartChoice = Integer.parseInt(View.askRestartGame());
         Validator.validateRestartNumber(restartChoice);
         if (restartChoice == 1) {
             computer.shuffle();
