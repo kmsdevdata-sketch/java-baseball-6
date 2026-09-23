@@ -15,7 +15,6 @@ public class Player {
 
     public static Player create(String playerNumbers) {
         Validator.validatePlayerNumbers(playerNumbers);
-        convertPlayerNumbersToIntegers(playerNumbers);
 
         return new Player(convertPlayerNumbersToIntegers(playerNumbers));
     }

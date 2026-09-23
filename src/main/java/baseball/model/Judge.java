@@ -22,8 +22,7 @@ public class Judge {
                 ball++;
             }
         }
-
-        return new GameResult(strike, ball, makeCallSign(strike, ball));
+        return GameResult.create(strike, ball, makeCallSign(strike, ball));
     }
 
     public boolean isOut(GameResult gameResult) {
