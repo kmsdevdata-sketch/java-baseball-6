@@ -8,14 +8,18 @@ import java.util.List;
 
 public class Computer {
 
+    private static final int RANDOM_RANGE_MIN_NUM = 1;
+    private static final int RANDOM_RANGE_MAX_NUM = 9;
+    private static final int RANDOM_NUMBERS_RANGE = 3;
+
     private RandomNumbers randomNumbers;
 
     public void generateRandomNumbers(){
 
         List<Integer> randomNumbers = new ArrayList<>();
 
-        while (randomNumbers.size() < 3) {
-            int randomNumber = Randoms.pickNumberInRange(1, 9);
+        while (randomNumbers.size() < RANDOM_NUMBERS_RANGE) {
+            int randomNumber = Randoms.pickNumberInRange(RANDOM_RANGE_MIN_NUM, RANDOM_RANGE_MAX_NUM);
             if (!randomNumbers.contains(randomNumber)) {
                 randomNumbers.add(randomNumber);
             }

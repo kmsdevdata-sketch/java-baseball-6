@@ -9,6 +9,8 @@ import baseball.vo.GameResult;
 
 public class BaseBallController {
 
+    private static final String RESTART = "1";
+
     private final Computer computer;
     private final Judge judge;
 
@@ -42,11 +44,9 @@ public class BaseBallController {
     }
 
     private boolean wantsToPlayAgain() {
-        int restartChoice = Integer.parseInt(View.askRestartGame());
+        String restartChoice = View.askRestartGame();
         Validator.validateRestartNumber(restartChoice);
-        return restartChoice == 1;
+        return restartChoice.equals(RESTART);
     }
-
-
 
 }

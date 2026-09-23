@@ -7,8 +7,8 @@ public class Validator {
         validateNumberRange(playerNumbers);
     }
 
-    public static void validateRestartNumber(int restartChoice) {
-        if (restartChoice != 1 && restartChoice != 2) {
+    public static void validateRestartNumber(String restartChoice) {
+        if (!restartChoice.equals("1") && !restartChoice.equals("2")) {
             throw new IllegalArgumentException("입력값은 1,2중에 선택하여야 합니다.");
         }
     }
