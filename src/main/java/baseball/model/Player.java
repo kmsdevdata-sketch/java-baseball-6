@@ -1,6 +1,5 @@
 package baseball.model;
 
-import baseball.validator.Validator;
 import baseball.vo.RandomNumbers;
 
 import java.util.ArrayList;
@@ -14,20 +13,35 @@ public class Player {
     }
 
     public static Player create(String playerNumbers) {
-        Validator.validatePlayerNumbers(playerNumbers);
+        validateNumberLength(playerNumbers);
+        validateNumberRange(playerNumbers);
 
         return new Player(convertPlayerNumbersToIntegers(playerNumbers));
     }
 
     private static List<Integer> convertPlayerNumbersToIntegers(String playerNumbers) {
-        List<Integer> player = new ArrayList<>();
+        List<Integer> playerList = new ArrayList<>();
         for (char number : playerNumbers.toCharArray()) {
-            player.add(number - '0');
+            playerList.add(number - '0');
         }
-        return player;
+        return playerList;
     }
 
     public List<Integer> getRandomNumbers() {
         return randomNumbers.randomNumbers();
+    }
+
+    private static void validateNumberLength(String playerNumbers) {
+        if (playerNumbers.length() != 3) {
+            throw new IllegalArgumentException("입력값은 3자리수 여야 합니다.");
+        }
+    }
+
+    private static void validateNumberRange(String playerNumbers) {
+        for (String number : playerNumbers.split("")) {
+            if (!number.matches("[1-9]+")) {
+                throw new IllegalArgumentException("입력값은 정수 1~9 사이의 값이여야 합니다.");
+            }
+        }
     }
 }
