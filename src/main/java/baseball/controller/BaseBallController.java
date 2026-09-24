@@ -1,5 +1,7 @@
 package baseball.controller;
 
+import baseball.generator.NumberGenerator;
+import baseball.generator.RandomNumberGenerator;
 import baseball.model.Computer;
 import baseball.model.Judge;
 import baseball.model.Player;
@@ -22,7 +24,8 @@ public class BaseBallController {
     public void startGame() {
         View.startGame();
         do {
-            computer.generateRandomNumbers();
+            NumberGenerator numberGenerator = new RandomNumberGenerator();
+            computer.generateRandomNumbers(numberGenerator);
             gameProcess();
         } while (wantsToPlayAgain());
     }
