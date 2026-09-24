@@ -6,9 +6,8 @@ import java.util.List;
 
 public class PlayerFixture {
 
-    private static final String USER_INPUT = "132";
-
-    public static Player createPlayer() {
-        return Player.create(USER_INPUT);
+    public static Player createPlayer(String userInput) {
+        return Player.create(userInput);
     }
+
 }
