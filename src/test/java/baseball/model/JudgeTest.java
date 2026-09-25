@@ -13,18 +13,16 @@ import static org.assertj.core.api.Assertions.*;
 class JudgeTest {
 
     private Judge judge;
-    private NumberGenerator numberGenerator;
 
     @BeforeEach
     void setup() {
         judge = new Judge();
-        numberGenerator = new TestNumberGenerator();
     }
 
     @Test
     void judge가_입력값에_맞게_GameResult를_생성하는지() {
         Computer computer = ComputerFixture.createComputer();
-        computer.generateRandomNumbers(numberGenerator);
+        computer.generateRandomNumbers();
 
         Player player = PlayerFixture.createPlayer("132");
 

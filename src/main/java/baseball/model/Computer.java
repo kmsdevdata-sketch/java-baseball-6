@@ -8,12 +8,14 @@ import java.util.List;
 public class Computer {
 
     private RandomNumbers randomNumbers;
+    private final NumberGenerator numberGenerator;
 
-    public void generateRandomNumbers(NumberGenerator numberGenerator) {
+    public Computer(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
 
-        List<Integer> generatedNumbers = numberGenerator.generate();
-
-        this.randomNumbers = RandomNumbers.create(generatedNumbers);
+    public void generateRandomNumbers() {
+        this.randomNumbers = RandomNumbers.create(numberGenerator.generate());
     }
 
     public List<Integer> getRandomNumbers() {
