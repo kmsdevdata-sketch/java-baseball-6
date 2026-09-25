@@ -5,7 +5,6 @@ import baseball.generator.RandomNumberGenerator;
 import baseball.model.Computer;
 import baseball.model.Judge;
 import baseball.model.Player;
-import baseball.validator.Validator;
 import baseball.view.View;
 import baseball.vo.GameResult;
 
@@ -48,8 +47,15 @@ public class BaseBallController {
 
     private boolean wantsToPlayAgain() {
         String restartChoice = View.askRestartGame();
-        Validator.validateRestartNumber(restartChoice);
+        validateRestartNumber(restartChoice);
         return restartChoice.equals(RESTART);
     }
+
+    private void validateRestartNumber(String restartChoice) {
+        if (!restartChoice.equals("1") && !restartChoice.equals("2")) {
+            throw new IllegalArgumentException("입력값은 1,2중에 선택하여야 합니다.");
+        }
+    }
+
 
 }
