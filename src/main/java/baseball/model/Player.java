@@ -13,9 +13,6 @@ public class Player {
     }
 
     public static Player create(String playerNumbers) {
-        validateNumberLength(playerNumbers);
-        validateNumberRange(playerNumbers);
-
         return new Player(convertPlayerNumbersToIntegers(playerNumbers));
     }
 
@@ -29,19 +26,5 @@ public class Player {
 
     public List<Integer> getRandomNumbers() {
         return randomNumbers.randomNumbers();
-    }
-
-    private static void validateNumberLength(String playerNumbers) {
-        if (playerNumbers.length() != 3) {
-            throw new IllegalArgumentException("입력값은 3자리수 여야 합니다.");
-        }
-    }
-
-    private static void validateNumberRange(String playerNumbers) {
-        for (String number : playerNumbers.split("")) {
-            if (!number.matches("[1-9]+")) {
-                throw new IllegalArgumentException("입력값은 정수 1~9 사이의 값이여야 합니다.");
-            }
-        }
     }
 }
