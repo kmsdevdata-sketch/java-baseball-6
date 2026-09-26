@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="severity" value="error"/>
+    <property name="fileExtensions" value="java"/>
+
+    <!-- 파일 끝 개행 -->
+    <module name="NewlineAtEndOfFile"/>
+
+    <!-- 한 줄 최대 120자 -->
+    <module name="LineLength">
+        <property name="max" value="120"/>
+        <property
+                name="ignorePattern"
+                value="^package.*|^import.*|https?://|ftp://"/>
+    </module>
+
+    <!-- 예외 규칙 파일 연결 -->
+    <module name="SuppressionFilter">
+        <property
+                name="file"
+                value="${config_loc}/suppressions.xml"/>
+    </module>
+
+    <module name="TreeWalker">
+
+        <!-- ================================================= -->
+        <!-- import와 기본 형식 -->
+        <!-- ================================================= -->
+
+        <module name="AvoidStarImport"/>
+        <module name="UnusedImports"/>
+        <module name="OneTopLevelClass"/>
+        <module name="OuterTypeFilename"/>
+        <module name="ModifierOrder"/>
+        <module name="RedundantModifier"/>
+
+        <!-- 중괄호와 공백 -->
+        <module name="NeedBraces"/>
+        <module name="LeftCurly"/>
+        <module name="RightCurly"/>
+        <module name="WhitespaceAfter"/>
+        <module name="WhitespaceAround"/>
+        <module name="NoWhitespaceBefore"/>
+        <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
+        <module name="EmptyForIteratorPad"/>
+        <module name="GenericWhitespace"/>
+        <module name="MethodParamPad"/>
+
+        <!-- 들여쓰기 형식 자체는 Spotless와 함께 검사한다. -->
+        <module name="Indentation"/>
+
+        <!-- 한 줄에 하나의 문장과 변수 선언 -->
+        <module name="OneStatementPerLine"/>
+        <module name="MultipleVariableDeclarations"/>
+        <module name="EmptyStatement"/>
+
+        <!-- ================================================= -->
+        <!-- 이름 규칙 -->
+        <!-- ================================================= -->
+
+        <module name="PackageName"/>
+        <module name="TypeName"/>
+        <module name="MethodName"/>
+        <module name="MemberName"/>
+        <module name="ParameterName"/>
+        <module name="LocalVariableName"/>
+        <module name="LambdaParameterName"/>
+        <module name="ConstantName"/>
+
+        <!-- ================================================= -->
+        <!-- 우테코 연습 제약 -->
+        <!-- ================================================= -->
+
+        <!-- 삼항 연산자 금지 -->
+        <module name="AvoidInlineConditionals"/>
+
+        <!-- else와 switch 금지 -->
+        <module name="IllegalToken">
+            <property
+                    name="tokens"
+                    value="LITERAL_ELSE,LITERAL_SWITCH"/>
+        </module>
+
+        <!-- 메서드 최대 15라인 -->
+        <module name="MethodLength">
+            <property name="max" value="15"/>
+            <property name="countEmpty" value="false"/>
+        </module>
+
+        <!--
+            같은 종류의 제어문이 3단계 이상 중첩되는 것을 제한한다.
+
+            Checkstyle은 바깥 제어문을 depth 0으로 계산하므로
+            max=1이면 if 안의 if까지 허용한다.
+        -->
+        <module name="NestedIfDepth">
+            <property name="max" value="1"/>
+        </module>
+
+        <module name="NestedForDepth">
+            <property name="max" value="1"/>
+        </module>
+
+        <module name="NestedTryDepth">
+            <property name="max" value="1"/>
+        </module>
+
+        <!-- System.exit() 금지 -->
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="System\.exit\s*\("/>
+            <property
+                    name="message"
+                    value="System.exit()은 사용할 수 없습니다."/>
+            <property name="ignoreComments" value="true"/>
+        </module>
+
+        <!-- ================================================= -->
+        <!-- 기초 품질 검사 -->
+        <!-- ================================================= -->
+
+        <module name="EqualsHashCode"/>
+        <module name="CovariantEquals"/>
+        <module name="EmptyBlock"/>
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
+        <module name="StringLiteralEquality"/>
+        <module name="InnerAssignment"/>
+        <module name="IllegalCatch"/>
+    </module>
+</module>

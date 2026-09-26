@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset
+        name="Woowacourse Practice Rules"
+        xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://pmd.sourceforge.net/ruleset/2.0.0
+            https://pmd.github.io/schema/ruleset_2_0_0.xsd">
+
+    <description>
+        우아한테크코스 프리코스 연습을 위한 PMD 규칙
+    </description>
+
+    <!-- ================================================= -->
+    <!-- 사용하지 않는 코드 -->
+    <!-- ================================================= -->
+
+    <rule ref="category/java/bestpractices.xml/UnusedLocalVariable"/>
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateField"/>
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod"/>
+
+    <!-- private 메서드의 사용하지 않는 매개변수 -->
+    <rule ref="category/java/bestpractices.xml/UnusedFormalParameter">
+        <properties>
+            <property name="checkAll" value="false"/>
+        </properties>
+    </rule>
+
+    <!-- ================================================= -->
+    <!-- 잘못되기 쉬운 코드 -->
+    <!-- ================================================= -->
+
+    <rule ref="category/java/errorprone.xml/EmptyCatchBlock"/>
+    <rule ref="category/java/codestyle.xml/EmptyControlStatement"/>
+    <rule ref="category/java/errorprone.xml/ReturnFromFinallyBlock"/>
+    <rule ref="category/java/errorprone.xml/AssignmentInOperand"/>
+    <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals"/>
+
+    <!-- ================================================= -->
+    <!-- 코드 복잡도 -->
+    <!-- ================================================= -->
+
+    <!-- 메서드의 인지 복잡도가 8 이상이면 실패 -->
+    <rule ref="category/java/design.xml/CognitiveComplexity">
+        <properties>
+            <property name="reportLevel" value="8"/>
+        </properties>
+    </rule>
+
+    <!-- 실행 경로의 수가 20 이상이면 실패 -->
+    <rule ref="category/java/design.xml/NPathComplexity">
+        <properties>
+            <property name="reportLevel" value="20"/>
+        </properties>
+    </rule>
+
+    <!-- 중첩된 if를 하나의 조건으로 합칠 수 있는지 검사 -->
+    <rule ref="category/java/design.xml/CollapsibleIfStatements"/>
+
+    <!-- 불필요하게 복잡한 boolean 반환 검사 -->
+    <rule ref="category/java/design.xml/SimplifyBooleanReturns"/>
+
+    <!-- ================================================= -->
+    <!-- Java 사용 방식 -->
+    <!-- ================================================= -->
+
+    <rule ref="category/java/bestpractices.xml/UseCollectionIsEmpty"/>
+    <rule ref="category/java/bestpractices.xml/PrimitiveWrapperInstantiation"/>
+    <rule ref="category/java/bestpractices.xml/UnusedAssignment"/>
+</ruleset>
