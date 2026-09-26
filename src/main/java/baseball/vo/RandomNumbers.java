@@ -26,7 +26,7 @@ public record RandomNumbers(List<Integer> randomNumbers) {
 
     private static void validateNumberRange(List<Integer> randomNumbers) {
         for (Integer randomNumber : randomNumbers) {
-            if (randomNumber < 0 || randomNumber > 9) {
+            if (randomNumber < 1 || randomNumber > 9) {
                 throw new IllegalArgumentException("입력값은 정수 1~9 사이의 값이여야 합니다.");
             }
         }
